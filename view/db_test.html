@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+
+<h1>프레임워크 테스트</h1>
+
+<? if (!$_SESSION['mb_id']) { ?>
+<form id="submitForm">
+	<input type="hidden" name="cmd" value="proc">
+	<input type="text" name="id" value="">
+	<input type="password" name="pass" value="">
+	<button type="button">로그인</button>
+</form>
+<? } else { ?>
+<p><button type="button" id="logout">로그아웃</button></p>
+<? } ?>
+
+<p>
+	<h3>#----- 데이터 ROW 1개 -----#</h3>
+	<?=$data1?>
+</p>
+<p>
+	<h3>#----- 데이터 여러개 -----#</h3>
+	<?=$data2?>
+</p>
+
+</body>
+</html>
+
+<script>
+	$(function(){
+		$("#submitForm > button").on("click", function(){
+			if ($("input[name='id']").val() == "") {
+				alert('아이디 입력');
+				return;
+			}
+			if ($("input[name='pass']").val() == "") {
+				alert('비밀번호 입력');
+				return;
+			}
+			$("#submitForm").attr("method", "post").attr("action", "/login").submit();
+		});
+
+		$("#logout").on("click", function(){
+			location.href = '/login?cmd=logout';
+		})
+	});
+</script>

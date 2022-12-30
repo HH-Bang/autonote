@@ -1,0 +1,37 @@
+<h1>공지사항</h1>
+
+<div>
+	<form method="post" action="/bbs">
+		<select name="search_sel">
+			<?=$selBox?>
+		</select>
+		<input type="text" name="search_val" value="<?=$selVal?>">
+		<button type="button" onclick="form.submit();">검색</button>
+	</form>
+</div>
+
+<table border="1">
+	<colgroup>
+		<col width="10%">
+		<col width="20%">
+		<col>
+		<col width="10%">
+		<col width="15%">
+	<colgroup>
+	<thead>
+		<tr>
+			<td>No.</td>
+			<td>이름</td>
+			<td>제목</td>
+			<td>조회수</td>
+			<td>등록일</td>
+		</tr>
+	</thead>
+	<tbody>
+		<?=$html?>
+	</tbody>
+</table>
+
+<div>
+	<?=$html_paging?>
+</div>

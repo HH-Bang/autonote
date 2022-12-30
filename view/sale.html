@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Cache-Control" content="no-store">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	
+	<meta name="description" content="중고차 오토세일">
+	<meta name="keywords" content="중고차 오토세일">
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="중고차 오토세일">
+	<meta property="og:title" content="중고차 오토세일">
+	<meta property="og:description" content="중고차 오토세일">
+	<meta property="og:image" content="https://autobell.co.kr/images/common/sns-open-graph.png">
+    
+	<title>중고차 오토세일</title>
+    
+	<style>
+		html, body { width:100%; height:100%; font-size:16px; word-break:keep-all; color:#555; font-size:0.9em; }
+		html, body, div, ul, li, p, h1, h2, h3, h4, dl, dt, dd, figure ,figcaption, ol { padding:0; margin:0; }
+		ul, li { list-style:none; }
+		a { text-decoration:none; }
+		a:hover { color:#ff6600; }
+		img { border:none; }
+		input { border-radius:3px; border:0; }
+		select { padding:10px; width:120px; border:1px solid #ccc; color:#999; }
+
+		header { width:100%; background-color:#eee; }
+		nav { display:flex; margin:0 auto; width:1200px; height:150px; background-color:#ddd; }
+		nav > div { padding:5px; }
+		nav > div:nth-child(1) { flex-grow:1; background-color:#dfdfdf; }
+		nav > div:nth-child(2) { flex-grow:1; background-color:#d7d7d7; text-align:right; }
+
+		.layout { display:flex; margin:0 auto; width:1200px; background-color:#eee; }
+		.layout > aside { padding:10px; width:350px; background-color:#f1f1f1; }
+		.layout > section { padding:10px; width:100%; background-color:#f9f9f9; }
+
+		footer { width:100%; background-color:#eee; }
+		footer > div { margin:0 auto; padding:10px 0; width:1200px; height:150px; background-color:#d6d6d6; text-align:center; }
+
+		aside > p { margin-bottom:5px; padding:5px; background-color:#999; color:#fff; font-size:1.2em; }
+		.menu_model { margin-bottom:20px; width:100%; height:200px; overflow-y:auto; }
+		.menu_model_box { width:100%; }
+		.menu_model_box > li { float:left; padding:2px 0; }
+		.menu_model_box > li:nth-child(odd) { width:83%; letter-spacing:-1px; }
+		.menu_model_box > li:nth-child(even) { width:17%; text-align:right; color:#a6a6a6; }
+		.menu_model_inwrite1 { margin-left:10px; color:#ccc; }
+		.menu_model_inwrite2 { margin-left:20px; color:#ccc; }
+		.menu_model_inwrite3 { margin-left:30px; color:#ccc; }
+		.menu_model_inwrite4 { margin-left:40px; color:#ccc; }
+
+		.menu_kind { margin-bottom:20px; width:100%; }
+		.menu_kind_box { width:100%; }
+		.menu_kind_box > li { float:left; margin:0 5px 5px 0; padding:5px 0; width:31.1%; height:50px; border-radius:3px; background-color:#fff; text-align:center; line-height:2em; cursor:pointer; }
+
+		.menu_salearea { margin-bottom:20px; width:100%; }
+		.menu_salearea_box { width:100%; }
+		.menu_salearea_box > li { float:left; margin:0 5px 5px 0; padding:10px 0; width:31.1%; border-radius:3px; background-color:#fff; text-align:center; line-height:2em; cursor:pointer; }
+
+		.menu_fuel { margin-bottom:20px; width:100%; }
+		.menu_fuel_box { width:100%; }
+		.menu_fuel_box > li { float:left; margin:0 5px 5px 0; padding:10px 0; width:31.1%; height:35px; border-radius:3px; background-color:#fff; text-align:center; cursor:pointer; }
+
+		.menu_gear_type { margin-bottom:20px; width:100%; }
+		.menu_gear_type_box { width:100%; }
+		.menu_gear_type_box > li { float:left; margin:0 5px 5px 0; padding:10px 0; width:31.1%; border-radius:3px; background-color:#fff; text-align:center; cursor:pointer; }
+
+		.menu_accident { margin-bottom:20px; width:100%; }
+		.menu_accident_box { width:100%; }
+		.menu_accident_box > li { float:left; margin:0 5px 5px 0; padding:10px 0; width:48%; border-radius:3px; background-color:#fff; text-align:center; cursor:pointer; }
+
+		.menu_color { margin-bottom:20px; width:100%; }
+		.menu_color_box { width:100%; }
+		.menu_color_box > li { float:left; margin:0 5px 5px 0; padding:10px 0; width:31.1%; border-radius:3px; background-color:#fff; text-align:center; cursor:pointer; }
+
+		.menu_option { margin-bottom:20px; width:100%; }
+		.menu_option_box { width:100%; }
+		.menu_option_box > li { float:left; margin:0 5px 5px 0; padding:10px 0; width:48%; border-radius:3px; background-color:#fff; text-align:center; cursor:pointer; }
+
+		.car_box { margin:8px; display:inline-block; width:280px; height:370px; border:1px solid #eee; border-radius:10px; box-shadow:0px 0px 10px 10px rgba(0, 0, 0, 0.05); overflow:hidden; }
+		.car_pic { width:100%; height:160px; background-color:#333; }
+		.car_info { margin:10px; width:100%; }
+		.car_info_box { height:100px; }
+		.car_info_1 { font-size:1em; color:#0099ff; line-height:2em; }
+		.car_info_2 { width:90%; font-size:1.4em; color:#333; font-weight:bold; letter-spacing:-2px; word-break:break-word; }
+		.car_info_3 { font-size:1.1em; color:#999;  line-height:2.4em; }
+		.car_info_4 { margin-top:10px; padding:5px 0; width:94%; border-top:1px solid #eee; }
+		.car_info_4 > span { font-size:2.2em; color:#0099ff; font-weight:bold; }
+		.car_company_area { width:90%; margin-bottom:3px; }
+		.car_company_area > span { display:inline-block; padding:3px 8px; background-color:#0099ff; color:#fff; border-radius:25px; }
+
+		.car_type_on { background-color:#999 !important; color:#fff; }
+		.mgb_20 { margin-bottom:20px; }
+	</style>
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+
+<header>
+	<nav>
+		<div>로고</div>
+		<div>메뉴</div>
+	</nav>
+</header>
+
+<form id="searchForm">
+	<input type="hidden" name="no" id="no" value="" />
+
+	<input type="hidden" name="cmd" id="cmd" value="" />
+	<input type="hidden" name="car_type" id="car_type" value="" />
+	<input type="hidden" name="sale_area" id="sale_area" value="" />
+	<input type="hidden" name="fuel" id="fuel" value="" />
+	<input type="hidden" name="gear_type" id="gear_type" value="" />
+	<input type="hidden" name="accident" id="accident" value="" />
+	<input type="hidden" name="color" id="color" value="" />
+	<input type="hidden" name="option" id="option" value="" />
+	
+
+	<section class="layout">
+		<aside>
+			<p>제조사/모델</p>
+			<div class="menu_model">
+				<ul class="menu_model_box">
+				</ul>
+			</div>
+
+			<p>차종</p>
+			<div class="menu_kind">
+				<ul class="menu_kind_box">
+				</ul>
+			</div>
+
+			<p>연식</p>
+			<div class="menu_year mgb_20">
+				<select name="menuY[]">
+					<option value="">시작 연도</option>
+					<?=$y1?>
+				</select> ~
+				<select name="menuY[]">
+					<option value="">종료 연도</option>
+					<?=$y2?>
+				</select>
+			</div>
+
+			<p>주행거리</p>
+			<div class="menu_km mgb_20">
+				<select name="menuKm[]">
+					<?=$km1?>
+				</select> ~
+				<select name="menuKm[]">
+					<?=$km2?>
+				</select>
+			</div>
+
+			<p>가격</p>
+			<div class="menu_price mgb_20">
+				<select name="menuPrice[]">
+					<?=$price1?>
+				</select> ~
+				<select name="menuPrice[]">
+					<?=$price2?>
+				</select>
+			</div>
+
+			<p>지역</p>
+			<div class="menu_salearea">
+				<ul class="menu_salearea_box">
+					<?=$salearea?>
+				</ul>
+			</div>
+
+			<p>연료</p>
+			<div class="menu_fuel">
+				<ul class="menu_fuel_box">
+					<?=$fuel?>
+				</ul>
+			</div>
+
+			<p>변속기</p>
+			<div class="menu_gear_type">
+				<ul class="menu_gear_type_box">
+					<?=$GearType?>
+				</ul>
+			</div>
+
+			<p>사고유무</p>
+			<div class="menu_accident">
+				<ul class="menu_accident_box">
+					<?=$accident?>
+				</ul>
+			</div>
+
+			<p>색상</p>
+			<div class="menu_color">
+				<ul class="menu_color_box">
+					<?=$color?>
+				</ul>
+			</div>
+
+			<p>옵션</p>
+			<div class="menu_option">
+				<ul class="menu_option_box">
+					<?=$option?>
+				</ul>
+			</div>
+		</aside>
+
+		<section id="products_area">
+		</section>
+	</section>
+</form>
+
+<footer>
+	<div>푸터</div>
+</footer>
+
+</body>
+</html>
+
+
+
+<script>
+	$(function(){
+		submitFunc();
+
+		// 제조사, 모델 클릭
+		$(document).on("click", ".modelDepth1, .modelDepth2, .modelDepth3, .modelDepth4, .modelDepth5", function(){ 
+			resetVal();
+			submitFunc();
+		});
+
+		// 연식, 주행거리, 가격 변경시
+		$(document).on("change", ".menu_year > select, .menu_km > select, .menu_price > select", function(){
+			resetVal();
+			submitFunc();
+		});
+
+		// 지역 클릭
+		var areaArr = [];
+		$(".menu_salearea_box > li").on("click", function(){
+			resetVal();
+			var area = $(this).data("area"); // 지역
+
+			if ($(this).hasClass("car_type_on") === true) {
+				areaArr.splice($.inArray(area, areaArr), 1); // 배열 삭제
+				$(this).removeClass("car_type_on");
+			} else {
+				areaArr.push(area); // 배열 추가
+				$(this).addClass("car_type_on");
+			}
+
+			$("#sale_area").val(areaArr);
+			submitFunc();
+		});
+
+		// 연료 클릭
+		var fuelArr = [];
+		$(".menu_fuel_box > li").on("click", function(){
+			resetVal();
+			var fuel = $(this).data("fuel"); // 지역
+
+			if ($(this).hasClass("car_type_on") === true) {
+				fuelArr.splice($.inArray(fuel, fuelArr), 1); // 배열 삭제
+				$(this).removeClass("car_type_on");
+			} else {
+				fuelArr.push(fuel); // 배열 추가
+				$(this).addClass("car_type_on");
+			}
+
+			$("#fuel").val(fuelArr);
+			submitFunc();
+		});
+
+		// 변속기 클릭
+		var gearTypeArr = [];
+		$(".menu_gear_type_box > li").on("click", function(){
+			resetVal();
+			var gearType = $(this).data("gear-type"); // 지역
+
+			if ($(this).hasClass("car_type_on") === true) {
+				gearTypeArr.splice($.inArray(gearType, gearTypeArr), 1); // 배열 삭제
+				$(this).removeClass("car_type_on");
+			} else {
+				gearTypeArr.push(gearType); // 배열 추가
+				$(this).addClass("car_type_on");
+			}
+
+			$("#gear_type").val(gearTypeArr);
+			submitFunc();
+		});
+
+		// 사고유무 클릭
+		var accidentArr = [];
+		$(".menu_accident_box > li").on("click", function(){
+			resetVal();
+			var accident = $(this).data("accident"); // 지역
+
+			if ($(this).hasClass("car_type_on") === true) {
+				accidentArr.splice($.inArray(accident, accidentArr), 1); // 배열 삭제
+				$(this).removeClass("car_type_on");
+			} else {
+				accidentArr.push(accident); // 배열 추가
+				$(this).addClass("car_type_on");
+			}
+
+			$("#accident").val(accidentArr);
+			submitFunc();
+		});
+
+		// 색상 클릭
+		var colorArr = [];
+		$(".menu_color_box > li").on("click", function(){
+			resetVal();
+			var color = $(this).data("color"); // 지역
+
+			if ($(this).hasClass("car_type_on") === true) {
+				colorArr.splice($.inArray(color, colorArr), 1); // 배열 삭제
+				$(this).removeClass("car_type_on");
+			} else {
+				colorArr.push(color); // 배열 추가
+				$(this).addClass("car_type_on");
+			}
+
+			$("#color").val(colorArr);
+			submitFunc();
+		});
+
+		// 옵션 클릭
+		var optionArr = [];
+		$(".menu_option_box > li").on("click", function(){
+			resetVal();
+			var option = $(this).data("option"); // 지역
+			
+			/*if ($(this).hasClass("car_type_on") === true) {
+				optionArr.splice($.inArray(option, optionArr), 1); // 배열 삭제
+				$(this).removeClass("car_type_on");
+			} else {
+				optionArr.push(option); // 배열 추가
+				$(this).addClass("car_type_on");
+			}
+
+			$("#option").val(optionArr);
+			submitFunc();
+			*/
+			alert(option);
+		});
+	});
+	
+	// 스크롤 페이지네이션
+	var page = 0;
+	$(window).scroll(function(){
+		$("#cmd").val("products");
+
+		var top = $(window).scrollTop();
+		var height = $(document).height() - $(window).height();
+
+		if (top == height) {
+			console.log(top+' == '+height);
+			var no = ++page;
+			no = no * 15;
+			$("#no").val(no);
+
+			$.ajax({
+				type : "POST"
+				, url : "/autonote_db"
+				, data : $("#searchForm").serialize()
+				, success : function(html) {
+					$("#products_area").append(html);
+				}
+			});
+		}
+	});
+
+	// 스크롤 페이지네이션 값 초기화
+	var resetVal = function() {
+		page = 0;
+		$("#no").val(0);
+	}
+
+	// 제조사/모델, 차종, 내용 등을 한번에 처리 하는 함수
+	var submitFunc = function() {
+		menuModel(); // 제조사/모델 - 메뉴 가져오기
+		menuKind(); // 차종 - 메뉴 가져오기
+		products(); // 내용
+	}
+
+	// 제조사/모델
+	var menuModel = function(){
+		$("#cmd").val("menuModel");
+
+		$.ajax({
+			url : '/autonote_db'
+			, method : 'post'
+			, data : $("#searchForm").serialize()
+			, success : function(res) {
+				$(".menu_model_box").html(res);
+			}
+		});
+	}
+
+	// 차종
+	var menuKind = function(){
+		$("#cmd").val("menuKind");
+
+		$.ajax({
+			url : '/autonote_db'
+			, method : 'post'
+			, data : $("#searchForm").serialize()
+			, success : function(res) {
+				$(".menu_kind_box").html(res);
+			}
+		});
+	}
+
+	// 컨텐츠
+	var products = function(){
+		$("#cmd").val("products");
+
+		$.ajax({
+			url : '/autonote_db'
+			, method : 'post'
+			, data : $("#searchForm").serialize()
+			, success : function(res) {
+				$("#products_area").html(res);
+			}
+		});
+	}
+
+	// 차종 배열 추가, 삭제
+	var carTypeArr = [];
+	var carTypeAdd = function(type) {
+		if (carTypeArr.indexOf(type) == -1) {
+			carTypeArr.push(type); // 배열 추가
+		} else {
+			carTypeArr.splice($.inArray(type, carTypeArr), 1); // 배열 삭제
+		}
+		$("#car_type").val(carTypeArr);
+
+		submitFunc();
+	}
+
+	// 제조사 체크박스 해제 시 같은 값 있는 체크박스 해제
+	var depthCheck1 = function(obj) {
+		if (!$(obj).is(':checked')) {
+			var v = $(obj).val();
+			var cnt = $(".modelDepth2, .modelDepth3, .modelDepth4, .modelDepth5").length;
+
+			for (var i=0; i<cnt; i++) {
+				var str = $("input:checkbox").eq(i).val();
+				//console.log(str);
+				if (str.indexOf(v) != -1) {
+					$("input:checkbox").eq(i).prop("checked", false);
+				}
+			}
+		}
+	}
+
+	// 모델 체크박스 해제 시 같은 값 있는 체크박스 해제
+	var depthCheck2 = function(obj) {
+		if (!$(obj).is(':checked')) {
+			var v = $(obj).val();
+			var cnt = $(".modelDepth3, .modelDepth4, .modelDepth5").length;
+
+			for (var i=0; i<cnt; i++) {
+				var str = $("input:checkbox").eq(i).val();
+				if (str.indexOf(v) != -1) {
+					$("input:checkbox").eq(i).prop("checked", false);
+				}
+			}
+		}
+	}
+
+	// 차량명 체크박스 해제 시 같은 값 있는 체크박스 해제
+	var depthCheck3 = function(obj) {
+		if (!$(obj).is(':checked')) {
+			var v = $(obj).val();
+			var cnt = $(".modelDepth4, .modelDepth5").length;
+
+			for (var i=0; i<cnt; i++) {
+				var str = $("input:checkbox").eq(i).val();
+				if (str.indexOf(v) != -1) {
+					$("input:checkbox").eq(i).prop("checked", false);
+				}
+			}
+		}
+	}
+
+	// 등급,연료 체크박스 해제 시 같은 값 있는 체크박스 해제
+	var depthCheck4 = function(obj) {
+		if (!$(obj).is(':checked')) {
+			var v = $(obj).val();
+			var cnt = $(".modelDepth5").length;
+
+			for (var i=0; i<cnt; i++) {
+				var str = $("input:checkbox").eq(i).val();
+				if (str.indexOf(v) != -1) {
+					$("input:checkbox").eq(i).prop("checked", false);
+				}
+			}
+		}
+	}
+</script>
