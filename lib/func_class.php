@@ -302,9 +302,10 @@ class func_class
 
 		//---------- 쿼리 타입별 return s ----------//
 		$queType = '';
-		$chkArr = ['update', 'insert', 'delete'];
-		foreach ($chkArr as $val) {			
-			if (strpos(strtolower($q), $val) === 0) { // update, insert, delete 문자열이 0번째면 쿼리타입 결정
+		$arr = ['update', 'insert', 'delete'];
+		foreach ($arr as $val) {			
+			$chkStr = strtolower(trim($q)); // 공백제거 후 소문자로 변경
+			if (strpos($chkStr, $val) === 0) { // update, insert, delete 문자열이 0번째면 쿼리타입 결정
 				$queType = $val;
 				break;
 			}
