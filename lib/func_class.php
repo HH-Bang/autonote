@@ -359,7 +359,11 @@ class func_class
 		if( $chk ) return false;
 
 		$result = $this->BuildQuery($q, $wArr, $db_name);
-		$return = $result[0]; // ?? array();
+		if (empty($result)) {
+			$return = [];
+		} else {
+			$return = $result[0]; // ?? array();
+		}
 		return $return;
 	}
 
@@ -572,8 +576,9 @@ class func_class
 		$upFile = $file['tmp_name'];
 		$file_name = $file['name'];
 		$file_size = $file['size'];
+		$fileSet = [];
 
-		for($i=0; $i<count($file_name); $i++)
+		for ($i=0; $i<count($file_name); $i++)
 		{
 			/*
 			if($file_name[$i])
@@ -587,30 +592,28 @@ class func_class
 			*/
 
 			$fSize = 204800000; // 200MB -> 1MB = 1,000,000
-			if($file_size[$i] >= $fSize)
-			{
+			if ($file_size[$i] >= $fSize) {
 				$this->Location_msg( array('msg'=>'200MB를 초과!') );
 				return;
 			}
 
-
-			if($file_name[$i])
-			{
+			if ($file_name[$i]) {
 				$set_file_name = str_replace(" ", "_", $file_name[$i]);
 
-				if($upFile[$i])
-				{
+				if ($upFile[$i]) {
 					/***************
 					원본 파일 작업
 					***************/
 					$fileN2 = strrchr($set_file_name, ".");
-					$fileN1 = str_replace($fileN2, '', $set_file_name);
+
+					//$fileN1 = str_replace($fileN2, '', $set_file_name); // 기존 파일명 살려서 변경할때
+					$fileN1 = $this->getRandStr(); // 랜덤문자열생성
+
 					$fileN1 = $fileN1.'_'.date("YmdHis");
 					//$file_V_name = $fileN1."_".$i.$fileN2;
 					$file_V_name = $fileN1.$fileN2;
 					
 					$file_V_name_path = $path_set."/".$file_V_name;
-
 					move_uploaded_file($upFile[$i], $file_V_name_path);
 
 					// 썸네일
@@ -1720,5 +1723,19 @@ class func_class
 		$return = implode('<br>', $arr);
 
 		return $return;
+	}
+
+	#------------------------------------#
+	# 랜덤문자열 생성
+	#------------------------------------#
+	public function getRandStr($length = 6)
+	{
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i=0; $i<$length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		}
+		return $randomString;
 	}
 }
