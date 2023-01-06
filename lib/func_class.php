@@ -581,10 +581,8 @@ class func_class
 		for ($i=0; $i<count($file_name); $i++)
 		{
 			/*
-			if($file_name[$i])
-			{
-				If(!eregi(".jpg$|.JPG$|.bmp$|.BMP$|.gif$|.GIF$",$file_name[$i]))
-				{
+			if ($file_name[$i]) {
+				if (!eregi(".jpg$|.JPG$|.bmp$|.BMP$|.gif$|.GIF$", $file_name[$i])) {
 					$this->Location_msg( array('msg'=>'*.jpg,*.bmp,*.gif 파일만 업로드할 수 있습니다') );
 					return;
 				}
